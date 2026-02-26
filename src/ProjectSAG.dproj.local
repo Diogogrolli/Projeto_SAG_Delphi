@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2026/02/26 15:15:17.873,=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.pas</Transaction>
+    <Transaction>2026/02/26 15:15:48.195,C:\ProjetoSAG-Delphi-BD\src\UfrmPrincipal.pas=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.pas</Transaction>
+    <Transaction>2026/02/26 15:15:48.195,C:\ProjetoSAG-Delphi-BD\src\UfrmPrincipal.dfm=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.dfm</Transaction>
+    <Transaction>2026/02/26 15:15:57.793,C:\ProjetoSAG-Delphi-BD\src\ProjectSAG.dproj=C:\Users\Diogo\Desktop\Projetods Dhelphi\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
