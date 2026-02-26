@@ -35,10 +35,15 @@ procedure TfrmPrincipal.btnNovoLoteClick(Sender: TObject);
 begin
   frmCadLote := TfrmCadLote.Create(Self);
   try
-      frmCadLote.ShowModal;
+    frmCadLote.ShowModal;
+
+
+    dmDados.qryLotes.Close;
+    dmDados.qryLotes.SQL.Clear;
+    dmDados.qryLotes.SQL.Add('SELECT * FROM TAB_LOTES_AVES');
+    dmDados.qryLotes.Open;
   finally
     FreeAndNil(frmCadLote);
-    // Aqui vai ser atualizado a QUERY para ser exibido o novo LOTE
   end;
 
 end;

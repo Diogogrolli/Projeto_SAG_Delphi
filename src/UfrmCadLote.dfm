@@ -39,7 +39,6 @@ object frmCadLote: TfrmCadLote
     Width = 121
     Height = 23
     TabOrder = 0
-    Text = 'edtDescricao'
   end
   object dtpEntrada: TDateTimePicker
     Left = 196
@@ -56,7 +55,6 @@ object frmCadLote: TfrmCadLote
     Width = 121
     Height = 23
     TabOrder = 2
-    Text = 'edtQtdInicial'
   end
   object Panel1: TPanel
     Left = 0

@@ -42,24 +42,24 @@ end;
 
 procedure TfrmCadLote.btnGravarClick(Sender: TObject);
 begin
-    //Aqui estarei usando o dmDados que já tem a conexão pronta
-    dmDados.qryLotes.Close;
-    dmDados.qryLotes.SQL.Clear;
-    dmDados.qryLotes.SQL.Add('INSERT INTO TAB_LOTES_AVES (ID_LOTE, DESCRICAO, DATA_ENTRADA, QUANTIDADE_INICIAL)');
-    dmDados.qryLotes.SQL.Add('VALUES (:pID, :pDesc, :pData, :pQtd)');
+  dmDados.qryLotes.Close;
+  dmDados.qryLotes.SQL.Clear;
+  dmDados.qryLotes.SQL.Add('INSERT INTO TAB_LOTES_AVES (DESCRICAO, DATA_ENTRADA, QUANTIDADE_INICIAL)');
+  dmDados.qryLotes.SQL.Add('VALUES (:pDesc, :pData, :pQtd)');
 
-      dmDados.qryLotes.ParamByName('pID').AsInteger := Random(1000); // Só para teste inicial
-      dmDados.qryLotes.ParamByName('pDesc').AsString := edtDescricao.Text;
-      dmDados.qryLotes.ParamByName('pData').AsDate := dtpEntrada.Date;
-      dmDados.qryLotes.ParamByName('pQtd').AsInteger := StrToIntDef(edtQtdInicial.Text, 0);
+  dmDados.qryLotes.ParamByName('pDesc').AsString := edtDescricao.Text;
+  dmDados.qryLotes.ParamByName('pData').AsDate   := dtpEntrada.Date;
+  dmDados.qryLotes.ParamByName('pQtd').AsInteger := StrToIntDef(edtQtdInicial.Text, 0);
 
-      try
-        dmDados.qryLotes.ExecSQL;
-        ShowMessage('Lote gravado com sucesso!');
-        Self.Close;   // Aqui vai fechar a tela de cadastro
-      except
-        on E: Exception do
-          ShowMessage('Erro ao gravar: ' + E.Message);
+  try
+    // O SEGREDO ESTÁ AQUI: Use ExecSQL para INSERT
+    dmDados.qryLotes.ExecSQL;
+
+    ShowMessage('Lote gravado com sucesso!');
+    Self.Close;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao gravar: ' + E.Message);
 
 
       end;
