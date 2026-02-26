@@ -124,7 +124,16 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="UfrmPrincipal.pas">
-            <Form>Form2</Form>
+            <Form>frmPrincipal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UdmDados.pas">
+            <Form>dmDados</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="UfrmCadLote.pas">
+            <Form>frmCadLote</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

@@ -11,4 +11,54 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 41
+    Width = 624
+    Height = 400
+    Align = alClient
+    DataSource = dmDados.dsLotes
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 624
+    Height = 41
+    Align = alTop
+    TabOrder = 1
+    ExplicitLeft = 232
+    ExplicitTop = 160
+    ExplicitWidth = 185
+    object btnNovoLote: TButton
+      Left = 24
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Novo Lote'
+      TabOrder = 0
+      OnClick = btnNovoLoteClick
+    end
+    object btnPesagem: TButton
+      Left = 232
+      Top = 10
+      Width = 105
+      Height = 25
+      Caption = 'Lan'#231'ar Pesagem'
+      TabOrder = 1
+    end
+    object btnMortalidade: TButton
+      Left = 472
+      Top = 8
+      Width = 121
+      Height = 25
+      Caption = 'Lan'#231'ar Mortalidade'
+      TabOrder = 2
+    end
+  end
 end

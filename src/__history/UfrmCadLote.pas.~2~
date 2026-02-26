@@ -1,0 +1,33 @@
+unit UfrmCadLote;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls;
+
+type
+  TfrmCadLote = class(TForm)
+    Label1: TLabel;
+    edtDescricao: TEdit;
+    Label2: TLabel;
+    dtpEntrada: TDateTimePicker;
+    Label3: TLabel;
+    edtQtdInicial: TEdit;
+    Panel1: TPanel;
+    btnGravar: TButton;
+    btnCancelar: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadLote: TfrmCadLote;
+
+implementation
+
+{$R *.dfm}
+
+end.

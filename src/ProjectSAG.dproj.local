@@ -2,8 +2,14 @@
 <BorlandProject>
   <Transactions>
     <Transaction>2026/02/26 15:15:17.873,=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.pas</Transaction>
-    <Transaction>2026/02/26 15:15:48.195,C:\ProjetoSAG-Delphi-BD\src\UfrmPrincipal.pas=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.pas</Transaction>
     <Transaction>2026/02/26 15:15:48.195,C:\ProjetoSAG-Delphi-BD\src\UfrmPrincipal.dfm=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.dfm</Transaction>
+    <Transaction>2026/02/26 15:15:48.195,C:\ProjetoSAG-Delphi-BD\src\UfrmPrincipal.pas=C:\Users\Diogo\Desktop\Projetods Dhelphi\Unit2.pas</Transaction>
     <Transaction>2026/02/26 15:15:57.793,C:\ProjetoSAG-Delphi-BD\src\ProjectSAG.dproj=C:\Users\Diogo\Desktop\Projetods Dhelphi\Project1.dproj</Transaction>
+    <Transaction>2026/02/26 15:17:22.791,=C:\ProjetoSAG-Delphi-BD\src\Unit1.pas</Transaction>
+    <Transaction>2026/02/26 15:19:11.878,C:\ProjetoSAG-Delphi-BD\src\UdmDados.pas=C:\ProjetoSAG-Delphi-BD\src\Unit1.pas</Transaction>
+    <Transaction>2026/02/26 15:19:11.878,C:\ProjetoSAG-Delphi-BD\src\UdmDados.dfm=C:\ProjetoSAG-Delphi-BD\src\Unit1.dfm</Transaction>
+    <Transaction>2026/02/26 15:46:54.604,=C:\ProjetoSAG-Delphi-BD\src\Unit1.pas</Transaction>
+    <Transaction>2026/02/26 15:47:37.664,C:\ProjetoSAG-Delphi-BD\src\UfrmCadLote.pas=C:\ProjetoSAG-Delphi-BD\src\Unit1.pas</Transaction>
+    <Transaction>2026/02/26 15:47:37.664,C:\ProjetoSAG-Delphi-BD\src\UfrmCadLote.dfm=C:\ProjetoSAG-Delphi-BD\src\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>
