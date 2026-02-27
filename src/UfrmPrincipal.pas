@@ -15,6 +15,7 @@ type
     btnPesagem: TButton;
     btnMortalidade: TButton;
     procedure btnNovoLoteClick(Sender: TObject);
+    procedure btnPesagemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,7 +28,7 @@ var
 implementation
 
 uses
-  UdmDados, UfrmCadLote;
+  UdmDados, UfrmCadLote, UfrmPesagem;
 
 {$R *.dfm}
 
@@ -46,6 +47,29 @@ begin
     FreeAndNil(frmCadLote);
   end;
 
+end;
+
+procedure TfrmPrincipal.btnPesagemClick(Sender: TObject);
+begin
+        // Verifica, não deixa abrir se não tiver lote selecionado
+  if dmDados.qryLotes.IsEmpty then
+  begin
+    ShowMessage('Por favor, selecione um lote no grid antes de lançar a pesagem.');
+    Exit;
+  end;
+
+  frmPesagem := TfrmPesagem.Create(Self);
+  try
+    frmPesagem.ShowModal;
+
+                //Atualiza o grid, garantindo o funcionamento
+    dmDados.qryLotes.Close;
+    dmDados.qryLotes.SQL.Clear;
+    dmDados.qryLotes.SQL.Add('SELECT * FROM TAB_LOTES_AVES');
+    dmDados.qryLotes.Open;
+  finally
+    FreeAndNil(frmPesagem);
+  end;
 end;
 
 end.

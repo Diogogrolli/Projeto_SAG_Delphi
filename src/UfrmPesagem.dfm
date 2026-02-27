@@ -1,4 +1,4 @@
-object frmCadLote: TfrmCadLote
+object frmPesagem: TfrmPesagem
   Left = 0
   Top = 0
   BorderStyle = bsDialog
@@ -12,45 +12,45 @@ object frmCadLote: TfrmCadLote
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
-  object Label1: TLabel
-    Left = 40
+  object TLabel
+    Left = 88
     Top = 136
-    Width = 54
+    Width = 94
     Height = 15
-    Caption = 'Descri'#231#227'o:'
+    Caption = 'Data da Pesagem:'
+  end
+  object Label1: TLabel
+    Left = 288
+    Top = 136
+    Width = 65
+    Height = 15
+    Caption = 'Peso M'#233'dio:'
   end
   object Label2: TLabel
-    Left = 240
-    Top = 136
-    Width = 86
-    Height = 15
-    Caption = 'Data de Entrada:'
-  end
-  object Label3: TLabel
     Left = 464
     Top = 136
-    Width = 99
+    Width = 66
     Height = 15
-    Caption = 'Quantidade Inicial:'
+    Caption = 'Qtd. Pesada:'
   end
-  object edtDescricao: TEdit
-    Left = 21
-    Top = 157
-    Width = 121
-    Height = 23
-    TabOrder = 0
-  end
-  object dtpEntrada: TDateTimePicker
-    Left = 196
+  object dtpPesagem: TDateTimePicker
+    Left = 40
     Top = 157
     Width = 186
     Height = 23
     Date = 46079.000000000000000000
-    Time = 0.660047384262725200
+    Time = 0.697686226849327800
+    TabOrder = 0
+  end
+  object edtPesoMedio: TEdit
+    Left = 264
+    Top = 157
+    Width = 121
+    Height = 23
     TabOrder = 1
   end
-  object edtQtdInicial: TEdit
-    Left = 458
+  object edtQtdPesada: TEdit
+    Left = 440
     Top = 157
     Width = 121
     Height = 23
@@ -60,22 +60,22 @@ object frmCadLote: TfrmCadLote
     Left = 0
     Top = 0
     Width = 624
-    Height = 57
+    Height = 65
     Align = alTop
     TabOrder = 3
     object btnGravar: TButton
-      Left = 72
-      Top = 8
-      Width = 75
+      Left = 88
+      Top = 16
+      Width = 113
       Height = 41
       Caption = 'Gravar'
       TabOrder = 0
       OnClick = btnGravarClick
     end
     object btnCancelar: TButton
-      Left = 416
-      Top = 8
-      Width = 75
+      Left = 376
+      Top = 13
+      Width = 115
       Height = 41
       Caption = 'Cancelar'
       TabOrder = 1

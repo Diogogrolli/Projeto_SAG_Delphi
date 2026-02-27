@@ -1,0 +1,22 @@
+# Build
+Win32/
+Win64/
+Debug/
+Release/
+
+# Delphi compilados
+*.dcu
+*.exe
+*.dll
+*.bpl
+*.dcp
+*.map
+*.rsm
+*.local
+*.identcache
+
+# Histórico Delphi
+__history/
+
+# Banco de dados
+*.fdb
