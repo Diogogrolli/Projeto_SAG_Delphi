@@ -17,6 +17,8 @@ type
     fdgxwtcrsr1: TFDGUIxWaitCursor;
     qryLotes: TFDQuery;
     dsLotes: TDataSource;
+    qryTotais: TFDQuery;
+    dsTotais: TDataSource;
   private
     { Private declarations }
   public

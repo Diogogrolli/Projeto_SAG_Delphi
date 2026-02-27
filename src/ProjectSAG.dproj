@@ -140,6 +140,10 @@
             <Form>frmPesagem</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UfrmMortalidade.pas">
+            <Form>frmMortalidade</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

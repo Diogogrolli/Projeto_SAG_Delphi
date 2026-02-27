@@ -9,17 +9,17 @@ object dmDados: TdmDados
       'DriverID=FB')
     Connected = True
     LoginPrompt = False
-    Left = 232
-    Top = 232
+    Left = 320
+    Top = 48
   end
   object FBLink: TFDPhysFBDriverLink
-    Left = 392
-    Top = 168
+    Left = 376
+    Top = 48
   end
   object fdgxwtcrsr1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 376
-    Top = 304
+    Left = 424
+    Top = 48
   end
   object qryLotes: TFDQuery
     Active = True
@@ -27,11 +27,34 @@ object dmDados: TdmDados
     SQL.Strings = (
       'SELECT * FROM TAB_LOTES_AVES')
     Left = 104
-    Top = 88
+    Top = 48
   end
   object dsLotes: TDataSource
     DataSet = qryLotes
-    Left = 304
-    Top = 80
+    Left = 184
+    Top = 48
+  end
+  object qryTotais: TFDQuery
+    Active = True
+    Connection = Conexao
+    SQL.Strings = (
+      'SELECT '
+      '  L.DESCRICAO, '
+      '  L.QUANTIDADE_INICIAL,'
+      
+        '  (SELECT SUM(M.QUANTIDADE_MORTA) FROM TAB_MORTALIDADE M WHERE M' +
+        '.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTOS,'
+      
+        '  (L.QUANTIDADE_INICIAL - (SELECT COALESCE(SUM(M.QUANTIDADE_MORT' +
+        'A), 0) FROM TAB_MORTALIDADE M WHERE M.ID_LOTE_FK = L.ID_LOTE)) A' +
+        'S SALDO_AVES'
+      'FROM TAB_LOTES_AVES L')
+    Left = 256
+    Top = 48
+  end
+  object dsTotais: TDataSource
+    DataSet = qryTotais
+    Left = 96
+    Top = 168
   end
 end
