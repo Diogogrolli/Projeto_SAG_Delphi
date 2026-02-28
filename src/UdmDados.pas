@@ -19,6 +19,8 @@ type
     dsLotes: TDataSource;
     qryTotais: TFDQuery;
     dsTotais: TDataSource;
+    spInserirMortalidade: TFDStoredProc;
+    procedure qryLotesAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -29,9 +31,29 @@ var
   dmDados: TdmDados;
 
 implementation
+uses UfrmPrincipal;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+ procedure TdmDados.qryLotesAfterScroll(DataSet: TDataSet);
+var
+  vQtdInicial, vTotalMortes: Integer;
+  vPercentual: Double;
+begin
+
+  vQtdInicial  := DataSet.FieldByName('QUANTIDADE_INICIAL').AsInteger;
+  vTotalMortes := DataSet.FieldByName('TOTAL_MORTES').AsInteger;
+
+
+  if vQtdInicial > 0 then
+    vPercentual := (vTotalMortes / vQtdInicial) * 100
+  else
+    vPercentual := 0;
+
+  if Assigned(frmPrincipal) then
+    frmPrincipal.AtualizarIndicadorSaude(vPercentual);
+end;
 
 end.

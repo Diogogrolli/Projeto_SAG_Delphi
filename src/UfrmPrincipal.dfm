@@ -53,7 +53,7 @@ object frmPrincipal: TfrmPrincipal
     Top = 57
     Width = 1108
     Height = 578
-    ActivePage = ts2
+    ActivePage = ts1
     Align = alClient
     TabOrder = 1
     object ts1: TTabSheet
@@ -61,7 +61,7 @@ object frmPrincipal: TfrmPrincipal
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
-        Width = 1100
+        Width = 896
         Height = 548
         Align = alClient
         DataSource = dmDados.dsLotes
@@ -71,6 +71,23 @@ object frmPrincipal: TfrmPrincipal
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+      end
+      object pnlSaude: TPanel
+        Left = 896
+        Top = 0
+        Width = 204
+        Height = 548
+        Align = alRight
+        Caption = 'Sa'#250'de do Lote: 0%'
+        Color = clGreen
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Bernard MT Condensed'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
       end
     end
     object ts2: TTabSheet
@@ -90,39 +107,6 @@ object frmPrincipal: TfrmPrincipal
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
         OnDrawColumnCell = dbgrd1DrawColumnCell
-        Columns = <
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'DESCRICAO'
-            Title.Alignment = taCenter
-            Title.Caption = 'Lote'
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'QUANTIDADE_INICIAL'
-            Title.Alignment = taCenter
-            Title.Caption = 'Qtd. Inicial'
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'TOTAL_MORTOS'
-            Title.Alignment = taCenter
-            Title.Caption = 'Total de Mortes'
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'SALDO_AVES'
-            Title.Alignment = taCenter
-            Title.Caption = 'Saldo Atual'
-            Visible = True
-          end>
       end
     end
   end

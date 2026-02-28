@@ -22,10 +22,18 @@ object dmDados: TdmDados
     Top = 48
   end
   object qryLotes: TFDQuery
-    Active = True
+    AfterScroll = qryLotesAfterScroll
     Connection = Conexao
     SQL.Strings = (
-      'SELECT * FROM TAB_LOTES_AVES')
+      'SELECT '
+      '    L.ID_LOTE, '
+      '    L.DESCRICAO, '
+      '    L.DATA_ENTRADA, '
+      '    L.QUANTIDADE_INICIAL,'
+      '    (SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) '
+      '     FROM TAB_MORTALIDADE M '
+      '     WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES'
+      'FROM TAB_LOTES_AVES L')
     Left = 104
     Top = 48
   end
@@ -56,5 +64,45 @@ object dmDados: TdmDados
     DataSet = qryTotais
     Left = 96
     Top = 168
+  end
+  object spInserirMortalidade: TFDStoredProc
+    Connection = Conexao
+    StoredProcName = 'ST_INSERIR_MORTALIDADE'
+    Left = 184
+    Top = 168
+    ParamData = <
+      item
+        Position = 1
+        Name = 'P_OBSERVACAO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 255
+      end
+      item
+        Position = 2
+        Name = 'P_QTD_MORTA'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 3
+        Name = 'P_DATA_MORTALIDADE'
+        DataType = ftDate
+        ParamType = ptInput
+      end
+      item
+        Position = 4
+        Name = 'P_ID_LOTE_FK'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 5
+        Name = 'OUT_PERCENTUAL_ACUMULADO'
+        DataType = ftFMTBcd
+        Precision = 15
+        NumericScale = 2
+        ParamType = ptOutput
+      end>
   end
 end

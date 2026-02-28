@@ -18,6 +18,7 @@ type
     ts1: TTabSheet;
     ts2: TTabSheet;
     dbgrd1: TDBGrid;
+    pnlSaude: TPanel;
     procedure btnNovoLoteClick(Sender: TObject);
     procedure btnPesagemClick(Sender: TObject);
     procedure btnMortalidadeClick(Sender: TObject);
@@ -25,9 +26,10 @@ type
     procedure dbgrd1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+    procedure AtualizarIndicadorSaude(Percentual: Double);
+
   end;
 
 var
@@ -54,10 +56,11 @@ begin
     frmMortalidade.ShowModal;
 
     //Atualiza o grid para voltar a exibir os lotes
-    dmDados.qryLotes.Close;
-    dmDados.qryLotes.SQL.Clear;
-    dmDados.qryLotes.SQL.Add('SELECT * FROM TAB_LOTES_AVES');
-    dmDados.qryLotes.Open;
+  dmDados.qryLotes.SQL.Clear;
+  dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
+  dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
+  dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES');
+  dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
   finally
     FreeAndNil(frmMortalidade);
   end;
@@ -72,8 +75,13 @@ begin
 
     dmDados.qryLotes.Close;
     dmDados.qryLotes.SQL.Clear;
-    dmDados.qryLotes.SQL.Add('SELECT * FROM TAB_LOTES_AVES');
+    dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
+    dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
+    dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES');
+    dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
     dmDados.qryLotes.Open;
+    DBGrid1.DataSource := nil;
+    DBGrid1.DataSource := dmDados.dsLotes;
   finally
     FreeAndNil(frmCadLote);
   end;
@@ -93,7 +101,7 @@ begin
   try
     frmPesagem.ShowModal;
 
-                //Atualiza o grid, garantindo o funcionamento
+ //Atualiza o grid, garantindo o funcionamento
     dmDados.qryLotes.Close;
     dmDados.qryLotes.SQL.Clear;
     dmDados.qryLotes.SQL.Add('SELECT * FROM TAB_LOTES_AVES');
@@ -109,7 +117,7 @@ begin
    //Se o total de mortos for maior que 10,  vai pintar a linha de vermelho
   if dmDados.qryTotais.FieldByName('TOTAL_MORTOS').AsInteger > 10 then
   begin
-    TDBGrid(Sender).Canvas.Brush.Color := $00C6C6FF; // Vermelho suave
+    TDBGrid(Sender).Canvas.Brush.Color := $00C6C6FF; //Vermelho
     TDBGrid(Sender).Canvas.Font.Color := clBlack;
   end;
 
@@ -127,4 +135,25 @@ begin
   dmDados.qryTotais.Open;
 end;
 
-end.
+
+procedure TfrmPrincipal.AtualizarIndicadorSaude(Percentual: Double);
+begin
+  // Atualiza o texto do painel
+  pnlSaude.Caption := 'Saúde do Lote: ' + FormatFloat('0.00', Percentual) + '%';
+
+  // REGRA DO PDF (item 3.c)
+  if Percentual < 5 then
+    pnlSaude.Color := clGreen
+  else if (Percentual >= 5) and (Percentual <= 10) then
+    pnlSaude.Color := clYellow
+  else
+    pnlSaude.Color := clRed;
+
+  // Ajuste de contraste
+  if pnlSaude.Color = clYellow then
+     pnlSaude.Font.Color := clBlack
+  else
+     pnlSaude.Font.Color := clWhite;
+end;
+
+end. //
