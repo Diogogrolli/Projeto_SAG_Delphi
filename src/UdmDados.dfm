@@ -7,7 +7,6 @@ object dmDados: TdmDados
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
     Left = 320
     Top = 48
@@ -47,7 +46,6 @@ object dmDados: TdmDados
     Top = 48
   end
   object qryTotais: TFDQuery
-    Active = True
     Connection = Conexao
     SQL.Strings = (
       'SELECT '

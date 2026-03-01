@@ -5,7 +5,7 @@ O objetivo é gerenciar o ciclo de vida de lotes de aves, controlando pesagens e
 
  Tecnologias Utilizadas
 - Delphi (VCL)
-- Banco de Dados Firebird 3.0
+- Banco de Dados Firebird 5.0
 - IBExpert para administração do banco
 
  Estrutura do Projeto

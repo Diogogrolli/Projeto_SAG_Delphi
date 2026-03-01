@@ -64,6 +64,8 @@ dmDados.qryLotes.Close;
   dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
   dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
   dmDados.qryLotes.Open;
+  dmDados.qryTotais.Close;
+  dmDados.qryTotais.Open;
 
   DBGrid1.DataSource := nil;
   DBGrid1.DataSource := dmDados.dsLotes;
@@ -91,6 +93,8 @@ begin
   dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
   dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
   dmDados.qryLotes.Open;
+  dmDados.qryTotais.Close;
+  dmDados.qryTotais.Open;
 
 
     DBGrid1.Columns.RestoreDefaults;
@@ -124,6 +128,8 @@ begin
     dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
     dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
     dmDados.qryLotes.Open;
+    dmDados.qryTotais.Close;
+    dmDados.qryTotais.Open;
 
     //Reconecta ao grid
     DBGrid1.DataSource := nil;
@@ -161,6 +167,8 @@ begin
   dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
   dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
   dmDados.qryLotes.Open;
+  dmDados.qryTotais.Close;
+  dmDados.qryTotais.Open;
 
   //Esse vai garantir que as colunas não fiquem esmagadas, uma cobrindo a outra!
   DBGrid1.Columns.RestoreDefaults;
