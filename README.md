@@ -28,7 +28,7 @@ Acesse o Data Module (UdmDados).
 
 No componente FDConnection, altere a propriedade Database para o local onde o arquivo .FDB está salvo em sua máquina.
 
-Execução: Pressione F9 para compilar e iniciar o sistema.
+Execução:Na Unit Principal (UfrmPrincipal) Pressione F9 para compilar e iniciar o sistema.
 
 Navegação:
 
