@@ -26,7 +26,10 @@ Configuração de Caminho:
 
 Acesse o Data Module (UdmDados).
 
-No componente FDConnection, altere a propriedade Database para o local onde o arquivo .FDB está salvo em sua máquina.
+No componente Conexão, altere a propriedade Database para o local onde o arquivo .FDB está salvo em sua máquina.
+
+User_Name: SYSDBA
+PassWord: masterkey
 
 Execução: Na Unit Principal (UfrmPrincipal) Pressione F9 para compilar e iniciar o sistema.
 
