@@ -50,18 +50,18 @@ object frmMortalidade: TfrmMortalidade
     Align = alTop
     TabOrder = 2
     object btnGravar: TButton
-      Left = 88
+      Left = 380
       Top = 8
-      Width = 75
+      Width = 169
       Height = 41
       Caption = 'Gravar'
       TabOrder = 0
       OnClick = btnGravarClick
     end
     object btnCancelar: TButton
-      Left = 422
+      Left = 56
       Top = 8
-      Width = 75
+      Width = 169
       Height = 41
       Caption = 'Cancelar'
       TabOrder = 1

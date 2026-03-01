@@ -21,27 +21,27 @@ object frmPrincipal: TfrmPrincipal
     Align = alTop
     TabOrder = 0
     object btnNovoLote: TButton
-      Left = 32
+      Left = 48
       Top = 8
-      Width = 97
+      Width = 177
       Height = 43
       Caption = 'Novo Lote'
       TabOrder = 0
       OnClick = btnNovoLoteClick
     end
     object btnPesagem: TButton
-      Left = 232
-      Top = 10
-      Width = 113
-      Height = 41
+      Left = 400
+      Top = 8
+      Width = 177
+      Height = 43
       Caption = 'Lan'#231'ar Pesagem'
       TabOrder = 1
       OnClick = btnPesagemClick
     end
     object btnMortalidade: TButton
-      Left = 456
+      Left = 816
       Top = 8
-      Width = 137
+      Width = 177
       Height = 43
       Caption = 'Lan'#231'ar Mortalidade'
       TabOrder = 2
@@ -61,9 +61,10 @@ object frmPrincipal: TfrmPrincipal
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
-        Width = 896
+        Width = 696
         Height = 548
         Align = alClient
+        Anchors = [akLeft, akRight]
         DataSource = dmDados.dsLotes
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -71,11 +72,44 @@ object frmPrincipal: TfrmPrincipal
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ID_LOTE'
+            Width = 50
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCRICAO'
+            Width = 200
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATA_ENTRADA'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QUANTIDADE_INICIAL'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'TOTAL_MORTES'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ULTIMO_PESO_MEDIO'
+            Visible = True
+          end>
       end
       object pnlSaude: TPanel
-        Left = 896
+        Left = 696
         Top = 0
-        Width = 204
+        Width = 404
         Height = 548
         Align = alRight
         Caption = 'Sa'#250'de do Lote: 0%'

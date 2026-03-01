@@ -64,18 +64,18 @@ object frmPesagem: TfrmPesagem
     Align = alTop
     TabOrder = 3
     object btnGravar: TButton
-      Left = 88
+      Left = 48
       Top = 16
-      Width = 113
+      Width = 153
       Height = 41
       Caption = 'Gravar'
       TabOrder = 0
       OnClick = btnGravarClick
     end
     object btnCancelar: TButton
-      Left = 376
-      Top = 13
-      Width = 115
+      Left = 368
+      Top = 16
+      Width = 179
       Height = 41
       Caption = 'Cancelar'
       TabOrder = 1

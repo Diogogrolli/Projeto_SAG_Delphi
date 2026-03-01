@@ -55,12 +55,20 @@ begin
   try
     frmMortalidade.ShowModal;
 
-    //Atualiza o grid para voltar a exibir os lotes
+dmDados.qryLotes.Close;
   dmDados.qryLotes.SQL.Clear;
   dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
   dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
-  dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES');
+  dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES,');
+  dmDados.qryLotes.SQL.Add('(SELECT FIRST 1 P.PESO_MEDIO FROM TAB_PESAGEM P');
+  dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
   dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
+  dmDados.qryLotes.Open;
+
+  DBGrid1.DataSource := nil;
+  DBGrid1.DataSource := dmDados.dsLotes;
+
+  DBGrid1.Columns.RestoreDefaults;
   finally
     FreeAndNil(frmMortalidade);
   end;
@@ -73,13 +81,19 @@ begin
     frmCadLote.ShowModal;
 
 
-    dmDados.qryLotes.Close;
-    dmDados.qryLotes.SQL.Clear;
-    dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
-    dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
-    dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES');
-    dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
-    dmDados.qryLotes.Open;
+   dmDados.qryLotes.Close;
+  dmDados.qryLotes.SQL.Clear;
+  dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
+  //Subquery da Mortalidade
+  dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
+  dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES,');
+  dmDados.qryLotes.SQL.Add('(SELECT FIRST 1 P.PESO_MEDIO FROM TAB_PESAGEM P');
+  dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
+  dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
+  dmDados.qryLotes.Open;
+
+
+    DBGrid1.Columns.RestoreDefaults;
     DBGrid1.DataSource := nil;
     DBGrid1.DataSource := dmDados.dsLotes;
   finally
@@ -90,7 +104,6 @@ end;
 
 procedure TfrmPrincipal.btnPesagemClick(Sender: TObject);
 begin
-        // Verifica, não deixa abrir se não tiver lote selecionado
   if dmDados.qryLotes.IsEmpty then
   begin
     ShowMessage('Por favor, selecione um lote no grid antes de lançar a pesagem.');
@@ -101,11 +114,22 @@ begin
   try
     frmPesagem.ShowModal;
 
- //Atualiza o grid, garantindo o funcionamento
+    //Recarrega os dados com o sql completo
     dmDados.qryLotes.Close;
     dmDados.qryLotes.SQL.Clear;
-    dmDados.qryLotes.SQL.Add('SELECT * FROM TAB_LOTES_AVES');
+    dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
+    dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
+    dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES,');
+    dmDados.qryLotes.SQL.Add('(SELECT FIRST 1 P.PESO_MEDIO FROM TAB_PESAGEM P');
+    dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
+    dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
     dmDados.qryLotes.Open;
+
+    //Reconecta ao grid
+    DBGrid1.DataSource := nil;
+    DBGrid1.DataSource := dmDados.dsLotes;
+    DBGrid1.Columns.RestoreDefaults;
+
   finally
     FreeAndNil(frmPesagem);
   end;
@@ -126,13 +150,20 @@ end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
-//Abre a query de lotes principal
+  //Fecha para garantir que vai carregar o novo sql
   dmDados.qryLotes.Close;
+  dmDados.qryLotes.SQL.Clear;
+  dmDados.qryLotes.SQL.Add('SELECT L.ID_LOTE, L.DESCRICAO, L.DATA_ENTRADA, L.QUANTIDADE_INICIAL,');
+  //Subquery da Mortalidade
+  dmDados.qryLotes.SQL.Add('(SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) FROM TAB_MORTALIDADE M');
+  dmDados.qryLotes.SQL.Add(' WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES,');
+  dmDados.qryLotes.SQL.Add('(SELECT FIRST 1 P.PESO_MEDIO FROM TAB_PESAGEM P');
+  dmDados.qryLotes.SQL.Add(' WHERE P.ID_LOTE_FK = L.ID_LOTE ORDER BY P.DATA_PESAGEM DESC) AS ULTIMO_PESO_MEDIO');
+  dmDados.qryLotes.SQL.Add('FROM TAB_LOTES_AVES L');
   dmDados.qryLotes.Open;
 
-//Abre uma nova query de resumo estatístico
-  dmDados.qryTotais.Close;
-  dmDados.qryTotais.Open;
+  //Esse vai garantir que as colunas não fiquem esmagadas, uma cobrindo a outra!
+  DBGrid1.Columns.RestoreDefaults;
 end;
 
 
@@ -141,7 +172,7 @@ begin
   // Atualiza o texto do painel
   pnlSaude.Caption := 'Saúde do Lote: ' + FormatFloat('0.00', Percentual) + '%';
 
-  // REGRA DO PDF (item 3.c)
+
   if Percentual < 5 then
     pnlSaude.Color := clGreen
   else if (Percentual >= 5) and (Percentual <= 10) then
@@ -149,11 +180,11 @@ begin
   else
     pnlSaude.Color := clRed;
 
-  // Ajuste de contraste
+
   if pnlSaude.Color = clYellow then
      pnlSaude.Font.Color := clBlack
   else
      pnlSaude.Font.Color := clWhite;
 end;
 
-end. //
+end.

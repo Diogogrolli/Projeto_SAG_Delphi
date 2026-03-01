@@ -66,16 +66,16 @@ object frmCadLote: TfrmCadLote
     object btnGravar: TButton
       Left = 72
       Top = 8
-      Width = 75
+      Width = 169
       Height = 41
       Caption = 'Gravar'
       TabOrder = 0
       OnClick = btnGravarClick
     end
     object btnCancelar: TButton
-      Left = 416
+      Left = 368
       Top = 8
-      Width = 75
+      Width = 169
       Height = 41
       Caption = 'Cancelar'
       TabOrder = 1

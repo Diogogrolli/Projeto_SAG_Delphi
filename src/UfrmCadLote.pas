@@ -37,7 +37,7 @@ uses
 
 procedure TfrmCadLote.btnCancelarClick(Sender: TObject);
 begin
-         Self.Close; // Aqui vai fechar a janela
+         Self.Close; //Close SEMPRE fecha janela
 end;
 
 procedure TfrmCadLote.btnGravarClick(Sender: TObject);
@@ -52,7 +52,7 @@ begin
   dmDados.qryLotes.ParamByName('pQtd').AsInteger := StrToIntDef(edtQtdInicial.Text, 0);
 
   try
-    // O SEGREDO ESTÁ AQUI: Use ExecSQL para INSERT
+
     dmDados.qryLotes.ExecSQL;
 
     ShowMessage('Lote gravado com sucesso!');

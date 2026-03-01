@@ -46,13 +46,12 @@ begin
   //Pegamos o ID do lote enquanto a query ainda está com os dados do Grid
   vIdLote := dmDados.qryLotes.FieldByName('ID_LOTE').AsInteger;
 
-  //INSERT
+  //Insert
   dmDados.qryLotes.Close;
   dmDados.qryLotes.SQL.Clear;
   dmDados.qryLotes.SQL.Add('INSERT INTO TAB_PESAGEM (ID_LOTE_FK, DATA_PESAGEM, PESO_MEDIO, QUANTIDADE_PESADA)');
   dmDados.qryLotes.SQL.Add('VALUES (:pLote, :pData, :pPeso, :pQtd)');
 
-  //Passando nos parâmetros
   dmDados.qryLotes.ParamByName('pLote').AsInteger := vIdLote;
   dmDados.qryLotes.ParamByName('pData').AsDate    := dtpPesagem.Date;
   dmDados.qryLotes.ParamByName('pPeso').AsFloat   := StrToFloatDef(edtPesoMedio.Text, 0);

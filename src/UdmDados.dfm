@@ -25,15 +25,19 @@ object dmDados: TdmDados
     AfterScroll = qryLotesAfterScroll
     Connection = Conexao
     SQL.Strings = (
-      'SELECT '
-      '    L.ID_LOTE, '
-      '    L.DESCRICAO, '
-      '    L.DATA_ENTRADA, '
-      '    L.QUANTIDADE_INICIAL,'
-      '    (SELECT COALESCE(SUM(M.QUANTIDADE_MORTA), 0) '
-      '     FROM TAB_MORTALIDADE M '
-      '     WHERE M.ID_LOTE_FK = L.ID_LOTE) AS TOTAL_MORTES'
-      'FROM TAB_LOTES_AVES L')
+      'SELECT'
+      '  L.ID_LOTE,'
+      '  L.DESCRICAO,'
+      '  L.DATA_ENTRADA,'
+      '  L.QUANTIDADE_INICIAL,'
+      '  COALESCE(SUM(M.QUANTIDADE_MORTA), 0) AS TOTAL_MORTES'
+      'FROM TAB_LOTES_AVES L'
+      'LEFT JOIN TAB_MORTALIDADE M ON M.ID_LOTE_FK = L.ID_LOTE'
+      'GROUP BY'
+      '  L.ID_LOTE,'
+      '  L.DESCRICAO,'
+      '  L.DATA_ENTRADA,'
+      '  L.QUANTIDADE_INICIAL')
     Left = 104
     Top = 48
   end
