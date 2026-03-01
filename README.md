@@ -10,7 +10,7 @@ O objetivo é gerenciar o ciclo de vida de lotes de aves, controlando pesagens e
 
  Estrutura do Projeto
 - `/src`: Código-fonte da aplicação Delphi.
-- `/database`: Arquivo de banco de dados (.FDB) e scripts SQL.
+- `/database`: Arquivo de banco de dados (.FDB) 
 - `/bin`: Binários compilados.
 - `/database_schema.sql`: Aqui está exibindo todos meus scripts e as querys utilizadas no banco de dados. 
 
@@ -28,7 +28,7 @@ Acesse o Data Module (UdmDados).
 
 No componente FDConnection, altere a propriedade Database para o local onde o arquivo .FDB está salvo em sua máquina.
 
-Execução:Na Unit Principal (UfrmPrincipal) Pressione F9 para compilar e iniciar o sistema.
+Execução: Na Unit Principal (UfrmPrincipal) Pressione F9 para compilar e iniciar o sistema.
 
 Navegação:
 
